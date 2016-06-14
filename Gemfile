@@ -14,3 +14,7 @@ gem 'selenium-webdriver'
 gem 'EmojifyRspecFormatter', '~> 0.1.4'
 gem 'data_mapper'
 gem "dm-postgres-adapter"
+
+group :test do
+  gem 'database_cleaner'
+end
