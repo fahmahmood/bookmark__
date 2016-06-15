@@ -18,11 +18,14 @@ class Bookmarks < Sinatra::Base
     erb :'links/new_link'
   end
 
+
   post '/links' do
     link = Link.create(url: params[:url], title: params[:title]) #create a link
-    tag = Tag.first_or_create(name: params[:tags]) #create tag for that link
-    link.tags << tag  #add the tag to the collection of tags (that you already have)
-    link.save #save th elink
+    params[:tags].split.each do |tag| #split the tags
+    # tag = Tag.first_or_create(name: params[:tags]) #create tag for that link
+    link.tags << Tag.create(name:tag)
+    end   #add the multiple tag to the collection of tags (that you already have)
+    link.save #save the link
     redirect '/links'
   end
 
